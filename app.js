@@ -15,12 +15,22 @@ app.once('ready', () => {
 
 app.on('web-contents-created', (event, contents) => {
   contents.on('context-menu', (event, {linkURL, x, y}) => {
-    if (!linkURL) return
+    const target = contents.hostWebContents
+    if (target == null) return
 
-    const menu = Menu.buildFromTemplate([{
-      label: 'Open Externally',
-      click: () => shell.openExternal(linkURL)
-    }])
+    const template = [{
+      label: 'Toggle Dev Tools',
+      click: () => contents.toggleDevTools()
+    }]
+
+    if (linkURL) {
+      template.push({
+        label: 'Open Externally',
+        click: () => shell.openExternal(linkURL),
+      })
+    }
+
+    const menu = Menu.buildFromTemplate(template)
     const window = BrowserWindow.fromWebContents(contents.hostWebContents)
     menu.popup(window, x, y)
   })
