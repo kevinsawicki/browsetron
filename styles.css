@@ -1,0 +1,28 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.navbar {
+  display: flex;
+  padding: 5px;
+  background: #abcdef;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.address-input {
+  margin-left: 10px;
+  flex-grow: 1;
+}
+
+.page {
+  flex-grow: 1;
+}

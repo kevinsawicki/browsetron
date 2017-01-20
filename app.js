@@ -25,8 +25,10 @@ app.on('web-contents-created', (event, contents) => {
     menu.popup(window, x, y)
   })
 
-  // Reject remove permissions
-  contents.session.setPermissionRequestHandler((webContents, permission, callback) => {
-    callback(false)
-  })
+  if (contents.session != null) {
+    // Reject remove permissions
+    contents.session.setPermissionRequestHandler((webContents, permission, callback) => {
+      callback(false)
+    })
+  }
 })
