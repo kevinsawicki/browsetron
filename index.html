@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Browsetron</title>
+    <script>require('./window')</script>
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .navbar {
+        display: flex;
+        padding: 5px;
+        background: #abcdef;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
+      }
+
+      .address-input {
+        margin-left: 10px;
+        flex-grow: 1;
+      }
+
+      .page {
+        flex-grow: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="navbar">
+        <button class="back-button" type="button">Back</button>
+        <button class="forward-button" type="button">Forward</button>
+        <button class="stop-button" type="button">Stop</button>
+        <button class="reload-button" type="button">Reload</button>
+        <input class="address-input" type="text" value="https://www.wikipedia.org" placeholder="Address">
+      </div>
+      <webview class="page" src="https://www.wikipedia.org" allowpoups webpreferences="contextIsolation=yes,nodeIntegration=no"></webview>
+    </div>
+  </body>
+</html>
