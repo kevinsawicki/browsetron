@@ -14,8 +14,6 @@ app.once('ready', () => {
 })
 
 app.on('web-contents-created', (event, contents) => {
-  if (contents.getType() !== 'webview') return
-
   contents.on('context-menu', (event, {linkURL, x, y}) => {
     if (!linkURL) return
 
