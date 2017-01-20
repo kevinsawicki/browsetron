@@ -7,10 +7,12 @@ let window
 app.once('ready', () => {
   window = new BrowserWindow()
   window.loadURL(url.format({
-   pathname: path.join(__dirname, 'index.html'),
-   protocol: 'file:',
-   slashes: true
- }))
+    pathname: path.join(__dirname, 'index.html'),
+    protocol: 'file:',
+    slashes: true
+  }))
+
+  Menu.setApplicationMenu(Menu.buildFromTemplate(require('./menu')))
 })
 
 app.on('web-contents-created', (event, contents) => {
@@ -18,25 +20,25 @@ app.on('web-contents-created', (event, contents) => {
     const target = contents.hostWebContents
     if (target == null) return
 
-    const template = [{
+    const contextTemplate = [{
       label: 'Toggle Dev Tools',
       click: () => contents.toggleDevTools()
     }]
 
     if (linkURL) {
-      template.push({
+      contextTemplate.push({
         label: 'Open Externally',
         click: () => shell.openExternal(linkURL),
       })
     }
 
-    const menu = Menu.buildFromTemplate(template)
+    const menu = Menu.buildFromTemplate(contextTemplate)
     const window = BrowserWindow.fromWebContents(contents.hostWebContents)
     menu.popup(window, x, y)
   })
 
   if (contents.session != null) {
-    // Reject remove permissions
+    // Reject permission requests
     contents.session.setPermissionRequestHandler((webContents, permission, callback) => {
       callback(false)
     })
