@@ -1,4 +1,4 @@
-const {app, BrowserWindow, Menu, shell} = require('electron')
+const {app, BrowserWindow, dialog, Menu, shell} = require('electron')
 const path = require('path')
 const url = require('url')
 
@@ -33,14 +33,24 @@ app.on('web-contents-created', (event, contents) => {
     }
 
     const menu = Menu.buildFromTemplate(contextTemplate)
-    const window = BrowserWindow.fromWebContents(contents.hostWebContents)
+    const window = BrowserWindow.fromWebContents(target)
     menu.popup(window, x, y)
   })
 
   if (contents.session != null) {
     // Reject permission requests
-    contents.session.setPermissionRequestHandler((webContents, permission, callback) => {
-      callback(false)
+    contents.session.setPermissionRequestHandler((contents, permission, callback) => {
+      const target = contents.hostWebContents
+      if (target == null) return
+
+      const window = BrowserWindow.fromWebContents(target)
+      dialog.showMessageBox(window, {
+        buttons: ['OK', 'Cancel'],
+        title: 'Permission Request',
+        message: `Allow ${permission} access to this page?`
+      }, (buttonIndex) => {
+        callback(buttonIndex === 0)
+      })
     })
   }
 })
