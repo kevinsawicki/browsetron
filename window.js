@@ -17,8 +17,12 @@ window.addEventListener('DOMContentLoaded', () => {
     stop.addEventListener('click', () => contents.stop())
 
     // Update address bar when page URL changes
-    contents.on('did-navigate', (event, url) => address.value = url)
-    contents.on('did-navigate-in-page', (event, url) => address.value = url)
+    contents.on('did-navigate', (event, url) => {
+      address.value = url
+    })
+    contents.on('did-navigate-in-page', (event, url) => {
+      address.value = url
+    })
 
     address.addEventListener('keyup', (event) => {
       // Load URL when enter is pressed

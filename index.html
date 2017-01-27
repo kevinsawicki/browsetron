@@ -16,7 +16,12 @@
         <button class="reload-button" type="button">Reload</button>
         <input class="address-input" type="text" value="https://www.wikipedia.org" placeholder="Address">
       </div>
-      <webview class="page" src="https://www.wikipedia.org" allowpoups webpreferences="contextIsolation=yes,nodeIntegration=no"></webview>
+      <webview class="page"
+        src="https://www.wikipedia.org"
+        allowpoups
+        webpreferences="contextIsolation=yes,nodeIntegration=no"
+        preload="./preload-isolated.js">
+      </webview>
     </div>
   </body>
 </html>
