@@ -28,7 +28,7 @@ app.on('web-contents-created', (event, contents) => {
     if (linkURL) {
       contextTemplate.push({
         label: 'Open Externally',
-        click: () => shell.openExternal(linkURL),
+        click: () => shell.openExternal(linkURL)
       })
     }
 
