@@ -2,15 +2,18 @@
   "name": "browsetron",
   "productName": "Browsetron",
   "version": "1.0.0",
-  "description": "",
+  "description": "Simple Electron-based browser",
+  "repository": "https://github.com/kevinsawicki/browsetron",
   "main": "app.js",
   "scripts": {
-    "start": "electron app.js"
+    "start": "electron app.js",
+    "package": "electron-packager . --all --overwrite --out out"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "electron": "1.6.3"
+    "electron": "1.6.3",
+    "electron-packager": "^8.5.2"
   }
 }
