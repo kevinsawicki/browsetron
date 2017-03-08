@@ -34,11 +34,10 @@ app.on('web-contents-created', (event, contents) => {
 
     const menu = Menu.buildFromTemplate(contextTemplate)
     const window = BrowserWindow.fromWebContents(target)
-    menu.popup(window, x, y)
+    menu.popup(window, {async: true, x, y})
   })
 
   if (contents.session != null) {
-    // Reject permission requests
     contents.session.setPermissionRequestHandler((contents, permission, callback) => {
       const target = contents.hostWebContents
       if (target == null) return
