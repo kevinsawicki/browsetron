@@ -30,5 +30,5 @@ window.addEventListener('DOMContentLoaded', () => {
         contents.loadURL(address.value)
       }
     })
-  })
+  }, {once: true})
 })
