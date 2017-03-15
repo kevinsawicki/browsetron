@@ -1,7 +1,7 @@
 {
   "name": "browsetron",
   "productName": "Browsetron",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple Electron-based browser",
   "repository": "https://github.com/kevinsawicki/browsetron",
   "main": "app.js",
